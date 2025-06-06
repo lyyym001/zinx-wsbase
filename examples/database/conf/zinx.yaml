@@ -1,0 +1,20 @@
+Name: 'zinx-websocket Demo'
+Host: "192.168.0.22"
+TcpPort: 8999
+MaxConn: 3
+WorkerPoolSize: 10
+HeartbeatTime: 0
+
+MysqlConfig:
+  Path: "192.168.0.9:3306"
+  Config: ""
+  Dbname: "zinx_websocket"
+  Username: "root"
+  Password: "root"
+  MaxIdleConns: 10
+  MaxOpenConns: 100
+
+RedisConfig: 
+  DB: 0
+  Addr: "192.168.0.9:6379"
+  Password: ""
