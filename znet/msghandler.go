@@ -3,9 +3,8 @@ package znet
 import (
 	"fmt"
 	"github.com/lyyym/zinx-wsbase/global"
-	"strconv"
-
 	"github.com/lyyym/zinx-wsbase/ziface"
+	"strconv"
 )
 
 // MsgHandle -
@@ -43,7 +42,10 @@ func (mh *MsgHandle) SendMsgToTaskQueue(request ziface.IRequest) {
 // DoMsgHandler 马上以非阻塞方式处理消息
 func (mh *MsgHandle) DoMsgHandler(request ziface.IRequest) {
 	//fmt.Println("api msgID = ", request.GetMsgID(), global.Object.DoubleMsgID)
-	handler, ok := mh.Apis[request.GetMsgID()/global.Object.DoubleMsgID]
+	//handler, ok := mh.Apis[request.GetMsgID()/global.Object.DoubleMsgID]
+	apiID := (request.GetMsgID() - 10000) / 1000
+	fmt.Println("apiID = ", apiID)
+	handler, ok := mh.Apis[apiID]
 	if !ok {
 		fmt.Println("api msgID = ", request.GetMsgID(), " is not FOUND!")
 		return

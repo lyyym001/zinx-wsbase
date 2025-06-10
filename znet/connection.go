@@ -3,6 +3,8 @@ package znet
 import (
 	"context"
 	"errors"
+	"github.com/lyyym/zinx-wsbase/global"
+	"github.com/lyyym/zinx-wsbase/ziface"
 	"go.uber.org/zap"
 	"io"
 	"net"
@@ -10,9 +12,6 @@ import (
 	"time"
 
 	"github.com/gorilla/websocket"
-	"github.com/lyyym/zinx-wsbase/global"
-
-	"github.com/lyyym/zinx-wsbase/ziface"
 )
 
 // Connection 链接

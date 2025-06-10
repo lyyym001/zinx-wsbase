@@ -5,7 +5,6 @@ import (
 	"encoding/binary"
 	"errors"
 	"github.com/lyyym/zinx-wsbase/global"
-
 	"github.com/lyyym/zinx-wsbase/ziface"
 )
 

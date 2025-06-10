@@ -4,10 +4,9 @@ import (
 	"errors"
 	"fmt"
 	"github.com/lyyym/zinx-wsbase/global"
+	"github.com/lyyym/zinx-wsbase/ziface"
 	"go.uber.org/zap"
 	"sync"
-
-	"github.com/lyyym/zinx-wsbase/ziface"
 )
 
 // ConnManager 连接管理模块

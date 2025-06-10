@@ -10,8 +10,8 @@ package ztimer
  */
 
 import (
-	"github.com/lyyym/zinx-wsbase/global"
 	"github.com/spf13/cast"
+	"github.com/sun-fight/zinx-websocket/global"
 	"math"
 	"sync"
 	"time"

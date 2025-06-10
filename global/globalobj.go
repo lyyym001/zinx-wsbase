@@ -56,6 +56,16 @@ type zapConfig struct {
 	LogInConsole  bool   // 输出控制台
 }
 
+type conf struct {
+	StreamingUri string
+	RtmpChannel  string
+	RtmpHost     string
+}
+
+type sqlite struct {
+	Dns string
+}
+
 /*
 存储一切有关Zinx框架的全局参数，供其他模块使用
 一些参数也可以通过 用户根据 zinx.yaml 来配置
@@ -89,6 +99,20 @@ type obj struct {
 	ConfFilePath string
 
 	/*
+		Sqlite3
+	*/
+	SqliteUse  bool
+	SqlitePath string
+	SqliteInst ziface.ISqliteHandle //sqliteHandle
+
+	/*
+		udp 端口
+	*/
+	UdpPort    int //udp端口
+	UdpPortDir int //第三方接口UDP协议
+	GinPort    int
+	StunPort   int
+	/*
 		zap
 	*/
 	ZapConfig zapConfig
@@ -97,6 +121,10 @@ type obj struct {
 	MysqlConfig mysqlConfig
 	//redis
 	RedisConfig redisConfig
+	//sqlite
+	Sqlite sqlite
+	//conf
+	Conf conf
 	// 额外的配置 .ExtraConfig["web-host"]
 	ExtraConfig map[string]interface{}
 }
@@ -148,19 +176,21 @@ func InitObject() {
 	}
 	//初始化Object变量，设置一些默认值
 	Object = &obj{
-		Name:             "ZinxServerApp",
-		Version:          "V0.11",
-		TCPPort:          8999,
-		Host:             "0.0.0.0",
-		Env:              "production",
-		DoubleMsgID:      1,
+		Name:    "MDBC-websocket",
+		Version: "V0.11",
+		TCPPort: 8999,
+		Host:    "0.0.0.0",
+		Env:     "production",
+		//DoubleMsgID:      1,
 		MaxConn:          12000,
 		MaxPacketSize:    4096,
-		ConfFilePath:     pwd + "/examples/database/conf/zinx.yaml", //"/conf/zinx.yaml",
+		ConfFilePath:     pwd + "/release/mdbc_server/conf/app.yaml", //"/conf/zinx.yaml",
 		WorkerPoolSize:   10,
 		MaxWorkerTaskLen: 1024,
 		MaxMsgChanLen:    1024,
 		HeartbeatTime:    60,
+		UdpPortDir:       10108,
+
 		ZapConfig: zapConfig{
 			Level:         "info",
 			Format:        "console",

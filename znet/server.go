@@ -5,11 +5,10 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
 	"github.com/lyyym/zinx-wsbase/global"
+	"github.com/lyyym/zinx-wsbase/ziface"
 	"github.com/lyyym/zinx-wsbase/zutil/zuid"
 	"go.uber.org/zap"
 	"net/http"
-
-	"github.com/lyyym/zinx-wsbase/ziface"
 )
 
 // Server 接口实现，定义一个Server服务类

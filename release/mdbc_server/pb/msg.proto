@@ -1,0 +1,295 @@
+syntax="proto3";                //Proto协议
+package pb;                     //当前包名
+option csharp_namespace="Pb";   //给C#提供的选项
+option go_package = "./pb";
+
+//同步客户端玩家ID
+message SyncPID{
+	int32 PID=1;
+}
+
+message Tcp_Info{
+	int32 Code = 1;
+	string Msg = 2;
+}
+
+message Tcp_Login{
+	string UserName = 1;
+	string Password = 2;
+	int32 Mode = 3;
+}
+
+message Tcp_Lose{
+	string UserName = 1;
+}
+
+message Tcp_Bind{
+	string UserToken = 1;
+	int64 DirVersion = 2;
+}
+
+message Tcp_Version{
+	int64 DirVersion = 1;
+}
+
+message Tcp_StudentStatus{
+	int32 Battery = 1;
+	int32 Free = 2;
+}
+
+message Response_StudentStatus{
+	string Number = 1;
+	int32 Free = 2;
+}
+
+message Tcp_UserInfo{
+	string NickName = 1;
+	string UserName = 2;
+	uint32 AccountType = 3;
+}
+
+message Tcp_Gz{
+	int32 Status = 1;   //1-取消故障 0-设置故障
+	string UserName = 2;
+}
+
+message Tcp_Gz_Response{
+	Tcp_Gz GzStatus = 1;
+	Tcp_Info Info = 2;
+}
+
+message Tcp_CourseInfo{
+	string Cid = 1;
+	int32 CType = 2; //4-交互课件 1-3 -视频课件
+	int32 CMode = 3; //1-学练模式 2-考评模式 3-协同模式
+}
+
+message Tcp_CoursePlay{
+	string Cid = 1;
+	int32 CType = 2; //4-交互课件 1-3 -视频课件
+	int32 CMode = 3; //1-学练模式 2-考评模式 3-协同模式
+	string Contorller = 4;//主控 空表示都是主控
+	int32 PartNumber = 5; //本次参与人数
+}
+
+
+message Tcp_Members{
+	repeated string Ms = 1;
+}
+
+message Tcp_VideoStep{
+	double MediaTime =1;
+}
+
+
+message TCP_RegisterObj {
+	int32 ObjId= 1;
+	float X= 2;
+	float	Y= 3;
+	float	Z=4;
+	float	RX=5;
+	float RY=6;
+	float	RZ=7;
+	int32 InteractiveType =8;
+	int32	Tb=9;
+	int32	Visiable=10;
+}
+
+//message Tcp_Tj2Info {
+//	string UName = 1;
+//		float Score = 2;
+//}
+
+//message Tcp_Tj3 {
+//	int32 UniqueId = 1;
+//	string UName = 2;
+//	string WorkName= 3;
+//	string Mode = 4;
+//	float MaxScore = 5;
+//	int32 Number = 6;
+//}
+
+message TCP_Grab_Call {
+	int32 Uid = 1;
+	int32 ObjId = 2;
+		string UName  = 3;
+}
+
+message Tcp_Object {
+		int32 ObjId=1;
+}
+
+message TCP_DetachObj {
+	int32 ObjId = 1;
+	float X = 2;
+	float Y= 3;
+	float Z= 4;
+	float RX= 5;
+	float RY= 6;
+	float RZ= 7;
+	float RIX= 8;
+	float RIY= 9;
+	float RIZ= 10;
+	float AX= 11;
+	float AY= 12;
+	float AZ= 13;
+}
+
+message TCP_TbObj {
+	int32 ObjId = 1;
+	float X= 2;
+	float Y= 3;
+	float Z= 4;
+	float RX= 5;
+	float RY= 6;
+	float RZ= 7;
+}
+
+message Tcp_ObjectStatus {
+	int32 ObjId = 1;
+	int32 Status = 2;
+}
+
+message Tcp_Step {
+	int32 StepId = 1;
+	string StepDate = 2;
+	int32 StepState =3;
+	string UName = 4;
+}
+
+message Tcp_Leave {
+	int32 State = 1;
+}
+
+message Tcp_Shixun {
+	//repeated string Users = 1;
+	int32 Mode = 2;
+	string WorkId = 3;
+}
+
+message Tcp_UInfo{
+	string UserName = 1;
+}
+
+message Tcp_Progress {
+	string UserName = 1;
+	float progress = 2;
+}
+
+message Tcp_QuestionInfo {
+	int32 Qid = 1;
+	int32 Code = 2;
+	string StepDate = 3;
+	int32 StepState = 4;
+	string UName = 5;
+}
+
+message Tcp_WorkRecord {
+	string Workid = 1;
+	string Workname = 2;
+	string Date = 3;
+	int32 Mode = 4;
+	int32 Partnumber = 5;
+	float MaxScore = 6;
+}
+
+message Tcp_ResponseRecord {
+	int32 Code = 1;
+	int32 UniqueId = 2;
+}
+
+//message Tcp_WorkInfoRecord {
+//	string Username = 1;
+//	string Uname    = 2;
+//	string Date     = 3;
+//	int32 Type= 4;
+//	int32 SetId    = 5;
+//	int32 State    = 6;
+//	int32 Score    = 7;
+//	string  Content  = 8;
+//	int32 UniqueId = 9;
+//}
+
+//message Tcp_ResponseRecordInfo {
+//	int32 Code = 1;
+//	int32 RecordId = 2;
+//}
+
+//message Tcp_Tj1 {
+//	string Cid = 1;
+//	int32 Mode2 = 2;
+//	int32 Mode3 = 3;
+//	int32 Page  = 4;
+//}
+
+//message Tcp_Tj1Info {
+//	string Date = 1;
+//	int32 Mode= 2;
+//	int32 Number  = 3;
+//	float MaxScore = 4;
+//	float Score = 5;
+//	int32 UniqueId = 6;
+//}
+
+//message Tcp_Tj1Data {
+//	int32 MaxPage = 1;
+//	repeated Tcp_Tj1Info Data = 2;
+//}
+
+//message Tcp_Tj2 {
+//	int32 UniqueId = 1;
+//	int32 Page = 2;
+//}
+
+//message Tcp_Tj2Data {
+//	int32 MaxPage = 1;
+//	int32 MaxNumber = 2;
+//	repeated Tcp_Tj2Info Data = 3;
+//}
+
+//message Tcp_Tj3Info {
+//	string UName = 1;
+//	string Date= 2;
+//	int32 State= 3;
+//	int32 Type= 4;
+//	float Score= 5;
+//	string Content = 6;
+//}
+
+//message Tcp_Tj3Data {
+//	string WorkName = 1;
+//	string Mode = 2;
+//	float MaxScore = 3;
+//	int32 Number = 4;
+//	repeated Tcp_Tj3Info Data = 5;
+//}
+
+message Tcp_RequestScene {
+	string SceneId = 1;
+	int32 Mode = 2;
+}
+
+message Tcp_RequestJk {
+	string OldUserName = 1;
+	string UserName = 2;
+	float Progress = 3;
+}
+
+message Tcp_ResponseJk {
+	int32 Code = 1;
+	float Progress = 2;
+}
+
+
+message Tcp_ResponseScene {
+	int32 Code = 1;
+	int32 Mode = 2;
+	int32 UNumber = 3;    //本次参与教学人数
+	string WorkId = 4;       //作品ID
+	string MainCtroller = 5; //主控用户
+}
+
+message Tcp_To{
+	int32 SubCode = 1;
+	string Data = 2;
+}

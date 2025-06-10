@@ -3,13 +3,11 @@ package znet
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"github.com/lyyym/zinx-wsbase/global"
+	"github.com/lyyym/zinx-wsbase/ziface"
 	"io"
 	"net"
 	"testing"
 	"time"
-
-	"github.com/lyyym/zinx-wsbase/ziface"
 )
 
 // run in terminal:

@@ -2,7 +2,7 @@ package zuid
 
 import (
 	"github.com/bwmarrin/snowflake"
-	"github.com/lyyym/zinx-wsbase/global"
+	"github.com/sun-fight/zinx-websocket/global"
 )
 
 const (
