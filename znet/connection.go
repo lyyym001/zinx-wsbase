@@ -3,6 +3,7 @@ package znet
 import (
 	"context"
 	"errors"
+	"fmt"
 	"github.com/lyyym/zinx-wsbase/global"
 	"github.com/lyyym/zinx-wsbase/ziface"
 	"go.uber.org/zap"
@@ -125,7 +126,7 @@ func (c *Connection) StartReader() {
 				return
 			}
 			msg.SetMsgType(msgType)
-
+			fmt.Println("readMsg - msgType = ", msgType)
 			//根据 dataLen 读取 data，放在msg.Data中
 			var data []byte
 			if msg.GetDataLen() > 0 {
@@ -267,6 +268,7 @@ func (c *Connection) SendBuffMsg(msgID uint16, msgType int, data []byte) (err er
 		global.Glog.Error("Pack error ", zap.Uint16("msg ID = ", msgID))
 		return errors.New("Pack error msg ")
 	}
+	fmt.Println("packLenght = ", len(pack), pack)
 	msg.SetData(pack)
 	select {
 	//写回客户端

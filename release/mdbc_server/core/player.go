@@ -67,12 +67,12 @@ func NewPlayer(conn ziface.IConnection) *Player {
 	return p
 }
 
-func (p *Player) Bind(userToken string) {
+func (p *Player) Bind(userToken string) bool {
 
 	userClaim, err := helper.AnalyseToken(userToken)
 	if err != nil {
 		fmt.Println("tokenAnalyseError")
-		return
+		return false
 	}
 	p.Status = 2
 	p.BeatTime = int(time.Now().Unix())
@@ -98,7 +98,7 @@ func (p *Player) Bind(userToken string) {
 	p.SendUserInfo()
 	//检测心跳
 	//go p.BroadcastPlayer()
-
+	return true
 }
 
 func (p *Player) SendUserInfo() {

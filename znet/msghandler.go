@@ -50,7 +50,7 @@ func (mh *MsgHandle) DoMsgHandler(request ziface.IRequest) {
 		fmt.Println("api msgID = ", request.GetMsgID(), " is not FOUND!")
 		return
 	}
-
+	fmt.Println("apiID2 = ", apiID, handler, mh.Apis[1])
 	//执行对应处理方法
 	handler.PreHandle(request)
 	handler.Handle(request)

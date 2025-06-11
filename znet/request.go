@@ -22,3 +22,8 @@ func (r *Request) GetData() []byte {
 func (r *Request) GetMsgID() uint16 {
 	return r.msg.GetMsgID()
 }
+
+// GetSubID 获取请求的消息的ID
+func (r *Request) GetSubID() uint16 {
+	return (r.msg.GetMsgID()-10000)%1000 + 10000
+}

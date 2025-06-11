@@ -19,10 +19,10 @@ type AccountApi struct {
 
 func (aa *AccountApi) Handle(request ziface.IRequest) {
 
-	global.Glog.Debug("recv from client : ", zap.Any("msgid", request.GetMsgID()),
-		zap.Any("data", string(request.GetData())))
 	//1. 得到消息的Sub，用来细化业务实现
-	sub := request.GetMsgID()
+	sub := request.GetSubID()
+	global.Glog.Info("recv from client : ", zap.Any("sub", request.GetSubID()),
+		zap.Any("data", string(request.GetData())))
 	//fmt.Println("Account Api Do : msgID = " , request.GetMsgID() , " Sub = " , request.GetMsgSub() , " msgLength = " , len(request.GetData()))
 
 	//2. 得知当前的消息是从哪个玩家传递来的,从连接属性pID中获取
@@ -64,14 +64,16 @@ func (aa *AccountApi) Handle_onRequest10002(p *core.Player, data []byte) {
 
 	//1. 先绑定数据给玩家
 	p.CDevice.Dir = request_data.DirVersion
-	p.Bind(request_data.UserToken)
-	fmt.Println("bind ", p.UserName)
-	global.Glog.Info("Bind UserName = %s , AccountType = %d , Pid = %d",
-		zap.String("UserName", p.UserName),
-		zap.Uint32("AccountType", p.AccountType),
-		zap.Int32("PID", p.PID),
-	)
-	//2. 绑定玩家到世界
-	core.WorldMgrObj.BindPlayer(p)
-
+	if p.Bind(request_data.UserToken) {
+		fmt.Println("bind ", p.UserName)
+		global.Glog.Info("Bind UserName = %s , AccountType = %d , Pid = %d",
+			zap.String("UserName", p.UserName),
+			zap.Uint32("AccountType", p.AccountType),
+			zap.Int32("PID", p.PID),
+		)
+		//2. 绑定玩家到世界
+		core.WorldMgrObj.BindPlayer(p)
+	} else {
+		global.Glog.Info("Bind Error")
+	}
 }
