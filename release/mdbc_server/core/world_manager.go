@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/lyyym/zinx-wsbase/global"
-	"github.com/lyyym/zinx-wsbase/release/mdbc_server/internal/config"
 	"github.com/lyyym/zinx-wsbase/release/mdbc_server/pb"
 	"google.golang.org/protobuf/proto"
 	"net"
@@ -103,7 +102,7 @@ func SendUdpBroadcastToAll() {
 	var sData pb.Sync_Hello
 	sData.Ip = global.Object.Host
 	sData.Port = global.Object.TCPPort
-	sData.GinPort = config.YamlConfig.App.GinPort
+	sData.GinPort = global.Object.GinPort
 	//zlog.Debugf("Broadcast Ip=%s,TcpPort=%d,GinPort = %d", sData.Ip, sData.Port, sData.GinPort)
 	//global.Glog.Info("udp broadcast ", zap.String("Ip", sData.Ip), zap.Int("TcpPort", sData.Port), zap.Int("GinPort", sData.GinPort))
 	// 这里设置接收者的IP地址为广播地址
@@ -118,7 +117,7 @@ func SendUdpBroadcastToAll() {
 		return
 	}
 
-	//fmt.Println("pBroadcast LanServer " ,raddrStu,"data = ", sData)
+	//fmt.Println("pBroadcast LanServer ", raddrStu, "data = ", sData)
 	x, _ := json.Marshal(sData)
 	connStu.Write(x)
 	connStu.Close()

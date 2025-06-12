@@ -7,7 +7,7 @@ GinPort: 8080
 StunPort: 19302
 MaxConn: 100
 WorkerPoolSize: 10
-HeartbeatTime: 0
+HeartbeatTime: 60
 #logFile: ./server.log
 #SqlitePath: "db/space"
 #maxPacketSize: 0

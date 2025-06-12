@@ -16,7 +16,7 @@ type RoomApi struct {
 func (ra *RoomApi) Handle(request ziface.IRequest) {
 
 	//1. 得到消息的Sub，用来细化业务实现
-	sub := request.GetMsgID()
+	sub := request.GetSubID()
 
 	//fmt.Println("Room Api Do : msgID = " , request.GetMsgID() , " Sub = " , request.GetMsgSub() , " msgLength = " , len(request.GetData()) , " msg = " )
 

@@ -21,8 +21,8 @@ func (aa *AccountApi) Handle(request ziface.IRequest) {
 
 	//1. 得到消息的Sub，用来细化业务实现
 	sub := request.GetSubID()
-	global.Glog.Info("recv from client : ", zap.Any("sub", request.GetSubID()),
-		zap.Any("data", string(request.GetData())))
+	//global.Glog.Info("recv from client : ", zap.Any("sub", request.GetSubID()),
+	//	zap.Any("data", string(request.GetData())))
 	//fmt.Println("Account Api Do : msgID = " , request.GetMsgID() , " Sub = " , request.GetMsgSub() , " msgLength = " , len(request.GetData()))
 
 	//2. 得知当前的消息是从哪个玩家传递来的,从连接属性pID中获取
@@ -46,6 +46,10 @@ func (aa *AccountApi) Handle(request ziface.IRequest) {
 		break
 	case 10003:
 		//掉线通知
+		break
+	case 10004:
+		//心跳
+		//fmt.Println("keep alive")
 		break
 
 	}

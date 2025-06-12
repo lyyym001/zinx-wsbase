@@ -44,13 +44,13 @@ func (mh *MsgHandle) DoMsgHandler(request ziface.IRequest) {
 	//fmt.Println("api msgID = ", request.GetMsgID(), global.Object.DoubleMsgID)
 	//handler, ok := mh.Apis[request.GetMsgID()/global.Object.DoubleMsgID]
 	apiID := (request.GetMsgID() - 10000) / 1000
-	fmt.Println("apiID = ", apiID)
+	//fmt.Println("apiID = ", apiID)
 	handler, ok := mh.Apis[apiID]
 	if !ok {
 		fmt.Println("api msgID = ", request.GetMsgID(), " is not FOUND!")
 		return
 	}
-	fmt.Println("apiID2 = ", apiID, handler, mh.Apis[1])
+	//fmt.Println("apiID2 = ", apiID, handler, mh.Apis[1])
 	//执行对应处理方法
 	handler.PreHandle(request)
 	handler.Handle(request)

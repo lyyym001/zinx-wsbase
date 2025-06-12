@@ -35,9 +35,9 @@ type Server struct {
 
 // NewServer 创建一个服务器句柄
 func NewServer(opts ...Option) ziface.IServer {
-	global.InitObject()
-	global.InitZap()
-	zuid.Init()
+	//global.InitObject()
+	//global.InitZap()
+	//zuid.Init()
 
 	printLogo()
 	s := &Server{

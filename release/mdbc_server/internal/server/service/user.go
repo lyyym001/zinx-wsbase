@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"github.com/lyyym/zinx-wsbase/global"
 	"github.com/lyyym/zinx-wsbase/release/mdbc_server/core"
-	"github.com/lyyym/zinx-wsbase/release/mdbc_server/internal/config"
 	"github.com/lyyym/zinx-wsbase/release/mdbc_server/internal/helper"
 	"github.com/lyyym/zinx-wsbase/release/mdbc_server/internal/models"
 	"github.com/lyyym/zinx-wsbase/release/mdbc_server/internal/models_sqlite"
@@ -161,9 +161,9 @@ func GetUserConfig(c *gin.Context) {
 	//}
 
 	jsonData := pb.UserConfig{
-		RtmpHost:     config.YamlConfig.Conf.RtmpHost,
-		StreamingUri: config.YamlConfig.Conf.StreamingUri,
-		RtmpChannel:  config.YamlConfig.Conf.RtmpChannel,
+		RtmpHost:     global.Object.Conf.RtmpHost, // config.YamlConfig.Conf.RtmpHost,
+		StreamingUri: global.Object.Conf.StreamingUri,
+		RtmpChannel:  global.Object.Conf.RtmpChannel,
 	}
 	jsonBytes, err := json.Marshal(jsonData)
 	if err != nil {

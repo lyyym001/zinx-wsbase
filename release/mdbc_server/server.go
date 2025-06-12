@@ -53,11 +53,10 @@ func OnConnecionAdd(conn ziface.IConnection) {
 // 当客户端断开连接的时候的hook函数
 func OnConnectionLost(conn ziface.IConnection) {
 
-	fmt.Println("有客户端断开了连接")
 	//获取当前连接的PID属性
 	pID, _ := conn.GetProperty("pID")
 	//fmt.Println("pID = " , pID)
-
+	fmt.Println("有客户端断开了连接 , pid =  ", pID)
 	//根据pID获取对应的玩家对象
 	player := core.WorldMgrObj.GetPlayerByPID(pID.(int32))
 	if player != nil {
@@ -76,7 +75,7 @@ func main() {
 
 	var AppID string = "mdbc"
 	//1.初始化配置
-	global.InitObject()
+	global.InitObject("/release/mdbc_server/conf/app.yaml")
 	//2.初始化日志
 	global.InitZap()
 	//3.初始化uuid

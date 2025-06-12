@@ -169,7 +169,7 @@ func (g *obj) Reload() {
 }
 
 // InitObject 初始化全局配置
-func InitObject() {
+func InitObject(confPath string) {
 	pwd, err := os.Getwd()
 	if err != nil {
 		pwd = "."
@@ -184,7 +184,7 @@ func InitObject() {
 		//DoubleMsgID:      1,
 		MaxConn:          12000,
 		MaxPacketSize:    4096,
-		ConfFilePath:     pwd + "/release/mdbc_server/conf/app.yaml", //"/conf/zinx.yaml",
+		ConfFilePath:     pwd + confPath, //"/conf/zinx.yaml",
 		WorkerPoolSize:   10,
 		MaxWorkerTaskLen: 1024,
 		MaxMsgChanLen:    1024,

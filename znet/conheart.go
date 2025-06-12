@@ -1,6 +1,7 @@
 package znet
 
 import (
+	"fmt"
 	"github.com/lyyym/zinx-wsbase/global"
 	"time"
 )
@@ -46,6 +47,7 @@ func (c *Connection) IsAlive() bool {
 	)
 	c.Lock()
 	defer c.Unlock()
+	fmt.Println("now.Sub(c.lastHeartBeatTime) = ", now.Sub(c.lastHeartBeatTime), global.Object.HeartbeatTime*time.Second)
 	if c.isClosed || now.Sub(c.lastHeartBeatTime) >
 		global.Object.HeartbeatTime*time.Second {
 		return false

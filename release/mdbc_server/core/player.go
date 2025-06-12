@@ -215,8 +215,9 @@ func (p *Player) LostConnection() {
 	//if p.Conn.GetTCPConnection() {
 	//
 	//}
-	p.Conn.Stop()
-	p = nil
+	//屏蔽20250612
+	//p.Conn.Stop()
+	//p = nil
 }
 
 //广播玩家自己的出生地点

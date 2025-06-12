@@ -20,7 +20,7 @@ type WorkApi struct {
 func (aa *WorkApi) Handle(request ziface.IRequest) {
 
 	//1. 得到消息的Sub，用来细化业务实现
-	sub := request.GetMsgID()
+	sub := request.GetSubID()
 	//fmt.Println("WorkApi Do : msgID = " , request.GetMsgID() , " Sub = " , request.GetMsgSub() , " msgLength = " , len(request.GetData()))
 
 	//2. 得知当前的消息是从哪个玩家传递来的,从连接属性pID中获取
