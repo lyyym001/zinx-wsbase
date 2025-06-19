@@ -9,6 +9,7 @@ import (
 func Auth() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		auth := c.GetHeader("Authorization")
+		//fmt.Println("auth = ", auth)
 		userClaim, err := helper.AnalyseToken(auth)
 		//fmt.Println("auth error ,", err)
 		if err != nil {

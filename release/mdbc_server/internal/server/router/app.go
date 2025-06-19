@@ -91,5 +91,11 @@ func Router(server ziface.IServer) *gin.Engine {
 	//学生获取老师端状态
 	auth.POST("/work/status", service.WorkStatus)
 
+	//课程创建
+	auth.POST("/course/create", service.CourseCreate)
+
+	//课程创建
+	auth.POST("/course/get", service.GetCustomCourse)
+
 	return r
 }

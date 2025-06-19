@@ -111,6 +111,11 @@ func UserLogin(c *gin.Context) {
 		models_sqlite.DB.Model(&models_sqlite.DirBasic{}).Count(&count)
 		fmt.Println("count = ", count)
 		if count == 0 && in.Dirs != nil && len(in.Dirs) > 0 {
+			in.Dirs["999"] = DirInfoRequest{
+				Did:   999,
+				Sort:  999,
+				DName: "未分类",
+			}
 			for _, value := range in.Dirs {
 				u := models_sqlite.DirBasic{
 					Did:   value.Did,

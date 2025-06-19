@@ -57,8 +57,11 @@ type DirInfoResponse struct {
 }
 
 type CourseInfoResponse struct {
-	Rid   string `json:"rid,omitempty"`
-	RName string `json:"rname"`
+	Rid    string `json:"rid,omitempty"`
+	RName  string `json:"rname"`
+	CType  int    `json:"ctype"`
+	VType  int    `json:"vtype"`
+	Status int    `json:"status"`
 }
 
 type DirNameSetRequest struct {
@@ -171,17 +174,9 @@ type Tcp_WorkStatus struct {
 	AutoStatus    int32 `json:"AutoStatus,omitempty"`
 }
 
-//type Tcp_Step struct {
-//	StepId    int32  `json:"StepId,omitempty"`
-//	StepDate  string `json:"StepDate,omitempty"`
-//	StepState int32  `json:"StepState,omitempty"`
-//	UName     string `json:"UName,omitempty"`
-//}
-//
-//type Tcp_QuestionInfo struct {
-//	Qid       int32  `json:"Qid,omitempty"`
-//	Code      int32  `json:"Code,omitempty"`
-//	StepDate  string `json:"StepDate,omitempty"`
-//	StepState int32  `json:"StepState,omitempty"`
-//	UName     string `json:"UName,omitempty"`
-//}
+type NewCourseRequest struct {
+	Cid   string `json:"cid,omitempty"`
+	CName string `json:"cname"`
+	CType int    `json:"ctype"`
+	VType int    `json:"vtype"`
+}

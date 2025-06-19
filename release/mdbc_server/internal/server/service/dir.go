@@ -18,7 +18,7 @@ func GetDirStatus(c *gin.Context) {
 	ds.DirVersion = models_sqlite.DirVersion
 	//获取目录清单
 	var db_data []models_sqlite.DirBasic
-	models_sqlite.DB.Find(&db_data)
+	models_sqlite.DB.Order("sort ASC").Find(&db_data)
 	if db_data != nil {
 		for _, device := range db_data {
 			dinfo := DirInfoResponse{
@@ -31,14 +31,43 @@ func GetDirStatus(c *gin.Context) {
 		}
 	}
 
-	//读取自定义课程清单
+	//if _, ok := ds.Ds["-99"]; !ok {
+	//	ds.Ds["-99"] = DirInfoResponse{
+	//		Did:   "-99",
+	//		Sort:  999,
+	//		DName: "未分类",
+	//		Cs:    make(map[string]CourseInfoResponse),
+	//	}
+	//}
+	//fmt.Println("ds.Ds = ", ds.Ds)
+	//读取编排的课程清单
 	var db_cdata []models_sqlite.CourseBasic
 	models_sqlite.DB.Find(&db_cdata)
 	if db_cdata != nil {
 		for _, course := range db_cdata {
 			dinfo := CourseInfoResponse{
-				Rid:   course.Rid,
-				RName: course.RName,
+				Rid:    course.Rid,
+				RName:  course.RName,
+				Status: 0,
+			}
+
+			if _, ok := ds.Ds[strconv.Itoa(course.Did)]; ok {
+				ds.Ds[strconv.Itoa(course.Did)].Cs[dinfo.Rid] = dinfo
+			}
+		}
+	}
+
+	//读取自定义课程清单
+	var db_customcdata []models_sqlite.CustomBasic
+	models_sqlite.DB.Find(&db_customcdata)
+	if db_cdata != nil {
+		for _, course := range db_customcdata {
+			dinfo := CourseInfoResponse{
+				Rid:    course.Rid,
+				RName:  course.RName,
+				CType:  course.CourseType,
+				VType:  course.Stereo,
+				Status: 2,
 			}
 
 			if _, ok := ds.Ds[strconv.Itoa(course.Did)]; ok {
@@ -123,7 +152,7 @@ func DirCreate(c *gin.Context) {
 	u := &models_sqlite.DirBasic{
 		Did:   int(newDid),
 		DName: "未命名",
-		Sort:  0,
+		Sort:  int(newDid),
 	}
 	if err := models_sqlite.DB.Create(&u).Error; err != nil {
 		fmt.Println("insert dir error")

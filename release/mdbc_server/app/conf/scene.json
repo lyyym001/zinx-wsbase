@@ -1,0 +1,19 @@
+{
+  "S":{
+    "10001": {
+      "Name" : "大厅",
+      "Assessment" : 1,
+      "Cooperate":0
+    },
+    "ztkp10001": {
+      "Name" : "垃圾分类",
+      "Assessment" : 1,
+      "Cooperate":1
+    },
+    "10003": {
+      "Name" : "认识地球",
+      "Assessment" : 1,
+      "Cooperate":1
+    }
+  }
+}

@@ -40,7 +40,7 @@ func NewDB() {
 
 	global.Glog.Info("sqlite-newdb", zap.String("dbName = ", global.Object.Sqlite.Dns))
 	//zlog.Debugf("connect db success - dbName = %s", config.YamlConfig.Sqlite.Dns)
-	db.AutoMigrate(&DeviceBasic{}, &DirBasic{}, &CourseBasic{}, &ShoucangBasic{}, &RecordBasic{}, &WorkBasic{}, &WorkRecordBasic{}, &SysBasic{}) //&RoomBasic{}, &RoomUser{},
+	db.AutoMigrate(&DeviceBasic{}, &DirBasic{}, &CourseBasic{}, &ShoucangBasic{}, &RecordBasic{}, &WorkBasic{}, &WorkRecordBasic{}, &SysBasic{}, &CustomBasic{}) //&RoomBasic{}, &RoomUser{},
 	DB = db
 
 	// 2.默认创建表

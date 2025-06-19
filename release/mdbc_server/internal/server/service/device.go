@@ -2,7 +2,6 @@ package service
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/lyyym/zinx-wsbase/release/mdbc_server/core"
 	"github.com/lyyym/zinx-wsbase/release/mdbc_server/internal/models_sqlite"
@@ -39,7 +38,7 @@ func GetDeviceStatus(c *gin.Context) {
 			ds.Ds[dinfo.Username] = dinfo
 		}
 	}
-	fmt.Println("设备列表=", ds.Ds)
+	//fmt.Println("设备列表=", ds.Ds)
 
 	jsonBytes, err := json.Marshal(ds)
 	if err != nil {
