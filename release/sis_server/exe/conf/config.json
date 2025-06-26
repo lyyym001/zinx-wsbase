@@ -1,0 +1,14 @@
+{
+  "Name":"FDLFrameworkServer",
+  "Host":"192.168.0.22",
+  "TcpPort":10106,
+  "UdpPort": 10108,
+  "MaxConn":3000,
+  "WorkerPoolSize":10,
+  "LogDir": "./server_log",
+  "LogFile":"debug.log",
+  "SqlitePath":"db/lyyym.db",
+  "UdpPort": 10108,
+  "MaxPacketSize": 0,
+  "TCPPort": 10106
+}

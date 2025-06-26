@@ -77,6 +77,7 @@ func (aa *AccountApi) Handle_onRequest10002(p *core.Player, data []byte) {
 		)
 		//2. 绑定玩家到世界
 		core.WorldMgrObj.BindPlayer(p)
+
 	} else {
 		global.Glog.Info("Bind Error")
 	}

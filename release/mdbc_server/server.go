@@ -75,7 +75,7 @@ func main() {
 
 	var AppID string = "mdbc"
 	//1.初始化配置
-	global.InitObject("/release/mdbc_server/conf/app.yaml") ///conf/app.yaml
+	global.InitObject("/conf/app.yaml") ///release/mdbc_server/conf/app.yaml
 	//2.初始化日志
 	global.InitZap()
 	//3.初始化uuid
