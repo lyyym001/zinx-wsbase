@@ -41,7 +41,7 @@ func (ra *RoomApi) Handle(request ziface.IRequest) {
 
 	switch sub {
 
-	case 20001: //老师发送课程信息给局域网服务器
+	case 10001: //老师发送课程信息给局域网服务器
 
 		ra.Handle_TeacherData(player, request.GetData())
 
@@ -52,109 +52,109 @@ func (ra *RoomApi) Handle(request ziface.IRequest) {
 		//	aa.Handle_KcDatas(player)
 		//}
 		break
-	case 20002: //删除一个本地数据库的的课程
+	case 10002: //删除一个本地数据库的的课程
 		ra.Handle_DeleteCourse(player, request.GetData())
 		break
-	case 20003: //更新一个本地课程数据
+	case 10003: //更新一个本地课程数据
 		ra.Handle_UpdateCourse(player, request.GetData())
 		break
-	case 20004: //添加一个新的本地课程数据
+	case 10004: //添加一个新的本地课程数据
 		ra.Handle_AddCourse(player, request.GetData())
 		break
-	case 20005: //控制解控
+	case 10005: //控制解控
 		ra.Handle_Control(player, request.GetData())
 		break
-	case 20006: //打开课程
+	case 10006: //打开课程
 		ra.Handle_OpenCourse(player, request.GetData())
 		break
-	case 20007: //学生进入课程
+	case 10007: //学生进入课程
 		ra.Handle_EnterCourse(player, request.GetData())
 		break
-	case 20008: //学生离开课程
+	case 10008: //学生离开课程
 		ra.Handle_LeaveCourse(player, request.GetData())
 		break
-	case 20009:
+	case 10009:
 		ra.Handle_CloseCourse(player, request.GetData())
 		break
-	case 20010:
+	case 10010:
 		ra.Handle_RequestData(player, request.GetData())
 		break
-	case 20011:
+	case 10011:
 		ra.Handle_ResponseData(player, request.GetData())
 		break
-	case 20012:
+	case 10012:
 		ra.Handle_ReplayCourse(player, request.GetData())
 		break
-	case 20013:
+	case 10013:
 		ra.Handle_UpdateC(player, request.GetData())
 		break
-	case 20014:
+	case 10014:
 		ra.Handle_UpdateOver(player, request.GetData())
 		break
-	case 20015:
+	case 10015:
 		ra.Handle_UpdateErr(player, request.GetData())
 		break
-	case 20016:
+	case 10016:
 		ra.Handle_SendNo(player, request.GetData())
 		break
-	case 20017:
+	case 10017:
 		ra.Handle_OpenNo(player, request.GetData())
 		break
-	case 20018:
+	case 10018:
 		ra.Handle_GetStus(player, request.GetData())
 		break
-	case 20019:
+	case 10019:
 		ra.Handle_GetStusWithCondition(player, request.GetData())
 		break
-	case 20020:
+	case 10020:
 		ra.Handle_onStudentRecord(player, request.GetData())
 		break
-	case 20021:
+	case 10021:
 		ra.Handle_onAddStudent(player, request.GetData())
 		break
-	case 20022:
+	case 10022:
 		ra.Handle_onStudyRecordByCourse(player, request.GetData())
 		break
-	case 20023:
+	case 10023:
 		ra.Handle_onUpdatePassword(player, request.GetData())
 		break
-	case 20024:
+	case 10024:
 		ra.Handle_onClientShutdown(player, request.GetData())
 		break
-	case 20025:
+	case 10025:
 		ra.Handle_onClientBatteryAndSpace(player, request.GetData())
 		break
-	case 20026:
+	case 10026:
 		ra.Handle_onVideoPause(player, request.GetData())
 		break
-	case 20027:
+	case 10027:
 		ra.Handle_onCourseNodeUpdate(player, request.GetData())
 		break
-	case 20028:
+	case 10028:
 		ra.Handle_onGamePause(player, request.GetData())
 		break
-	case 20029:
+	case 10029:
 		ra.Handle_DeleteStu(player, request.GetData())
 		break
-	case 20030:
+	case 10030:
 		ra.Handle_AddUser(player, request.GetData())
 		break
-	case 20031:
+	case 10031:
 		ra.Handle_onStudentData(player, request.GetData())
 		break
-	case 20032:
+	case 10032:
 		ra.Handle_onClientHuyan(player, request.GetData())
 		break
-	case 20033:
+	case 10033:
 		ra.Handle_onClientHuyanClose(player, request.GetData())
 		break
-	case 20034: //开启录屏
+	case 10034: //开启录屏
 		ra.Handle_onClientLpStart(player, request.GetData())
 		break
-	case 20035: //关闭录屏
+	case 10035: //关闭录屏
 		ra.Handle_onClientLpClose(player, request.GetData())
 		break
-	case 20036: //开启/关闭 静音/黑屏/护眼
+	case 10036: //开启/关闭 静音/黑屏/护眼
 		ra.Handle_onTurnOnOrOffStatus(player, request.GetData())
 		break
 		//
@@ -245,7 +245,7 @@ func (aa *RoomApi) Handle_AddCourse(p *core.Player, data1 []byte) {
 	if len(sid) > 0 {
 		fmt.Println("[3-20004]添加灵创课程 err = 作品已经存在,", data.CourseID)
 		data1, _ := json.Marshal(call)
-		p.SendMsg(2, 20004, data1)
+		p.SendMsg(2, 10004, data1)
 		return //作品已经存在
 	}
 
@@ -269,7 +269,7 @@ func (aa *RoomApi) Handle_AddCourse(p *core.Player, data1 []byte) {
 			call.Id = _id
 			fmt.Println("[3-20004]添加灵创课程 , 作品已添加成功 ， ID = ", _id, call)
 			data1, _ := json.Marshal(call)
-			p.SendMsg(2, 20004, data1)
+			p.SendMsg(2, 10004, data1)
 		}
 		//fmt.Println("update affect rows is ", affectNum)
 	}
@@ -298,7 +298,7 @@ func (aa *RoomApi) Handle_Control(p *core.Player, data []byte) {
 	players := core.RoomMgrObj.GetAllPlayers(p.TID)
 	if players != nil {
 		for _, player := range players {
-			player.SendMsg(2, 20005, data)
+			player.SendMsg(2, 10005, data)
 		}
 	}
 
@@ -345,7 +345,7 @@ func (aa *RoomApi) Handle_OpenCourse(p *core.Player, data []byte) {
 		players := core.RoomMgrObj.GetAllPlayers(p.TID)
 		if players != nil {
 			for _, player := range players {
-				player.SendMsg(2, 20006, data1)
+				player.SendMsg(2, 10006, data1)
 
 			}
 			//for _, player := range players {
@@ -384,7 +384,7 @@ func (aa *RoomApi) Handle_EnterCourse(p *core.Player, data []byte) {
 		sendData.StuUserName = p.CID
 		//序列化数据
 		data1, _ := json.Marshal(sendData)
-		player.SendMsg(2, 20007, data1)
+		player.SendMsg(2, 10007, data1)
 	}
 
 	fmt.Println("[2-20007]进入课程 msg = ", data)
@@ -402,7 +402,7 @@ func (aa *RoomApi) Handle_LeaveCourse(p *core.Player, data []byte) {
 		sendData.StuUserName = p.CID
 		//序列化数据
 		data1, _ := json.Marshal(sendData)
-		player.SendMsg(2, 20008, data1)
+		player.SendMsg(2, 10008, data1)
 		fmt.Println("StuSendToTeacher", player.CID, time.Now())
 	} else {
 		fmt.Println("学生离开课程[", msg.LeaveType, "] 老师不存在。")
@@ -496,7 +496,7 @@ func (aa *RoomApi) Handle_CloseCourse(p *core.Player, data []byte) {
 
 		if players != nil {
 			for _, player := range players {
-				player.SendMsg(2, 20009, data)
+				player.SendMsg(2, 10009, data)
 				fmt.Println("TeacherSendToStu", player.CID, time.Now())
 			}
 		} else {
@@ -511,7 +511,7 @@ func (aa *RoomApi) Handle_CloseCourse(p *core.Player, data []byte) {
 			if players != nil {
 				for _, player := range players {
 					if player.CID == msg.StuAccountID {
-						player.SendMsg(2, 20009, data)
+						player.SendMsg(2, 10009, data)
 						break
 					}
 				}
@@ -533,7 +533,7 @@ func (aa *RoomApi) Handle_RequestData(p *core.Player, data []byte) {
 		Room := core.RoomMgrObj.GetRoom(p.TID)
 		if Room != nil {
 			Room.ZjUid = p.CID
-			player.SendMsg(2, 20010, data)
+			player.SendMsg(2, 10010, data)
 		}
 	}
 	fmt.Println("[2-20010]学生端请求本地数据 msg = ", data)
@@ -551,7 +551,7 @@ func (aa *RoomApi) Handle_ResponseData(p *core.Player, data []byte) {
 		if Room != nil {
 			for _, player := range players {
 				if player.CID == Room.ZjUid {
-					player.SendMsg(2, 20011, data)
+					player.SendMsg(2, 10011, data)
 				}
 			}
 		}
@@ -579,9 +579,9 @@ func (aa *RoomApi) Handle_ReplayCourse(p *core.Player, data []byte) {
 
 			for _, player := range players {
 				if msg.StuAccountID == "" {
-					player.SendMsg(2, 20012, data1)
+					player.SendMsg(2, 10012, data1)
 				} else if msg.StuAccountID == player.CID {
-					player.SendMsg(2, 20012, data1)
+					player.SendMsg(2, 10012, data1)
 					break
 				}
 
@@ -601,7 +601,7 @@ func (aa *RoomApi) Handle_UpdateC(p *core.Player, data []byte) {
 	player := core.RoomMgrObj.GetTPlayer(p.TID)
 	if player != nil {
 		data1, _ := json.Marshal(sendData)
-		player.SendMsg(2, 20013, data1)
+		player.SendMsg(2, 10013, data1)
 	}
 
 	fmt.Println("[2-20013]学生更新课程通知老师 sendData = ", sendData)
@@ -616,7 +616,7 @@ func (aa *RoomApi) Handle_UpdateOver(p *core.Player, data []byte) {
 	player := core.RoomMgrObj.GetTPlayer(p.TID)
 	if player != nil {
 		data1, _ := json.Marshal(sendData)
-		player.SendMsg(2, 20014, data1)
+		player.SendMsg(2, 10014, data1)
 	}
 
 	fmt.Println("[2-20014]学生更新课程[成功]通知老师 sendData = ", sendData)
@@ -631,7 +631,7 @@ func (aa *RoomApi) Handle_UpdateErr(p *core.Player, data []byte) {
 	player := core.RoomMgrObj.GetTPlayer(p.TID)
 	if player != nil {
 		data1, _ := json.Marshal(sendData)
-		player.SendMsg(2, 20015, data1)
+		player.SendMsg(2, 10015, data1)
 	}
 
 	fmt.Println("[2-20015]学生更新课程[失败]通知老师 sendData = ", sendData)
@@ -656,7 +656,7 @@ func (aa *RoomApi) Handle_SendNo(p *core.Player, data []byte) {
 			sendData.Result = "srep"
 			x, _ := json.Marshal(sendData)
 
-			p.SendMsg(2, 20016, x)
+			p.SendMsg(2, 10016, x)
 
 			fmt.Println("R", cRoom.TID, "学生", p.CID, "ID", p.PID, "学号重复输入--", pid, "已经输入这个学号")
 		} else {
@@ -688,12 +688,12 @@ func (aa *RoomApi) Handle_SendNo(p *core.Player, data []byte) {
 				x, _ := json.Marshal(sendData1)
 				playerT := core.RoomMgrObj.GetTPlayer(p.TID)
 				if playerT != nil {
-					playerT.SendMsg(2, 20016, x)
+					playerT.SendMsg(2, 10016, x)
 				}
 				sendData.Result = "success"
 				x1, _ := json.Marshal(sendData)
 
-				p.SendMsg(2, 20016, x1)
+				p.SendMsg(2, 10016, x1)
 
 				//fmt.Println("学号验证成功", cli.UserName, pname, getData.SNum)
 				fmt.Println("学生", p.CID, "ID", p.PID, "学号验证成功", pName, getData.SNum)
@@ -703,7 +703,7 @@ func (aa *RoomApi) Handle_SendNo(p *core.Player, data []byte) {
 				sendData.Result = "snull"
 				x, _ := json.Marshal(sendData)
 
-				p.SendMsg(2, 20016, x)
+				p.SendMsg(2, 10016, x)
 
 				//fmt.Println("学号不存在", cli.UserName)
 				fmt.Println("R", p.TID, "学生", p.CID, "ID", p.PID, " 输入学号不存在")
@@ -732,7 +732,7 @@ func (aa *RoomApi) Handle_OpenNo(p *core.Player, data []byte) {
 
 		if players != nil {
 			for _, player := range players {
-				player.SendMsg(2, 20017, data)
+				player.SendMsg(2, 10017, data)
 			}
 		} else {
 			fmt.Println("老师通知学生输学号 教室没有学生。")
@@ -746,7 +746,7 @@ func (aa *RoomApi) Handle_OpenNo(p *core.Player, data []byte) {
 				for _, player := range players {
 					if player.CID == getData.StuAccountID {
 						delete(cRoom.ClientSNum, player.SNum)
-						player.SendMsg(2, 20017, data)
+						player.SendMsg(2, 10017, data)
 						break
 					}
 				}
@@ -783,7 +783,7 @@ func (aa *RoomApi) Handle_GetStus(p *core.Player, data []byte) {
 
 	//数据
 	x, _ := json.Marshal(allStudent)
-	p.SendMsg(2, 20018, x)
+	p.SendMsg(2, 10018, x)
 	fmt.Println("[2-20018]老师获取学生列表 student = ", allStudent)
 
 }
@@ -812,7 +812,7 @@ func (aa *RoomApi) Handle_GetStusWithCondition(p *core.Player, data []byte) {
 
 	//数据
 	x, _ := json.Marshal(sData)
-	p.SendMsg(2, 20019, x)
+	p.SendMsg(2, 10019, x)
 	fmt.Println("[2-20019]老师获取学生列表 student = ", sData)
 
 }
@@ -846,7 +846,7 @@ func (aa *RoomApi) Handle_onStudentRecord(p *core.Player, data []byte) {
 	//数据
 	sData.AllRecordData = allStudentRecord
 	x, _ := json.Marshal(sData)
-	p.SendMsg(2, 20020, x)
+	p.SendMsg(2, 10020, x)
 	fmt.Println("[2-20020]Handle_onStudentRecord student = ", sData)
 
 }
@@ -938,7 +938,7 @@ func (aa *RoomApi) Handle_onStudyRecordByCourse(p *core.Player, data []byte) {
 		//
 		sData.StudyInfoData = allStudentRecord
 		x, _ := json.Marshal(sData)
-		p.SendMsg(2, 20022, x)
+		p.SendMsg(2, 10022, x)
 	}
 
 	//数据
@@ -973,7 +973,7 @@ func (aa *RoomApi) Handle_onClientShutdown(p *core.Player, data []byte) {
 	if players != nil {
 		for _, player := range players {
 			fmt.Println("关机 cid = ", player.CID)
-			player.SendMsg(2, 20024, data)
+			player.SendMsg(2, 10024, data)
 		}
 	}
 
@@ -996,7 +996,7 @@ func (aa *RoomApi) Handle_onClientBatteryAndSpace(p *core.Player, data []byte) {
 	x, _ := json.Marshal(sData)
 	player := core.RoomMgrObj.GetTPlayer(p.TID)
 	if player != nil {
-		player.SendMsg(2, 20025, x)
+		player.SendMsg(2, 10025, x)
 	}
 
 	//数据
@@ -1010,7 +1010,7 @@ func (aa *RoomApi) Handle_onVideoPause(p *core.Player, data []byte) {
 	players := core.RoomMgrObj.GetAllPlayers(p.TID)
 	if players != nil {
 		for _, player := range players {
-			player.SendMsg(2, 20026, data)
+			player.SendMsg(2, 10026, data)
 		}
 	}
 
@@ -1034,7 +1034,7 @@ func (aa *RoomApi) Handle_onCourseNodeUpdate(p *core.Player, data []byte) {
 
 	player := core.RoomMgrObj.GetTPlayer(p.TID)
 	if player != nil {
-		player.SendMsg(2, 20027, x)
+		player.SendMsg(2, 10027, x)
 	}
 
 	//数据
@@ -1048,7 +1048,7 @@ func (aa *RoomApi) Handle_onGamePause(p *core.Player, data []byte) {
 	players := core.RoomMgrObj.GetAllPlayers(p.TID)
 	if players != nil {
 		for _, player := range players {
-			player.SendMsg(2, 20028, data)
+			player.SendMsg(2, 10028, data)
 		}
 	}
 
@@ -1155,7 +1155,7 @@ func (aa *RoomApi) Handle_onClientHuyan(p *core.Player, data []byte) {
 	players := core.RoomMgrObj.GetAllPlayers(p.TID)
 	if players != nil {
 		for _, player := range players {
-			player.SendMsg(2, 20032, data)
+			player.SendMsg(2, 10032, data)
 		}
 	}
 
@@ -1170,7 +1170,7 @@ func (aa *RoomApi) Handle_onClientHuyanClose(p *core.Player, data []byte) {
 	players := core.RoomMgrObj.GetAllPlayers(p.TID)
 	if players != nil {
 		for _, player := range players {
-			player.SendMsg(2, 20033, data)
+			player.SendMsg(2, 10033, data)
 		}
 	}
 
@@ -1189,7 +1189,7 @@ func (aa *RoomApi) Handle_onClientLpStart(p *core.Player, data []byte) {
 	if players != nil {
 		for _, player := range players {
 			if player.CID == msg.StuAccountID {
-				player.SendMsg(2, 20034, data)
+				player.SendMsg(2, 10034, data)
 			}
 		}
 	}
@@ -1209,7 +1209,7 @@ func (aa *RoomApi) Handle_onClientLpClose(p *core.Player, data []byte) {
 	if players != nil {
 		for _, player := range players {
 			if player.CID == msg.StuAccountID {
-				player.SendMsg(2, 20035, data)
+				player.SendMsg(2, 10035, data)
 			}
 		}
 	}
@@ -1231,7 +1231,7 @@ func (aa *RoomApi) Handle_onTurnOnOrOffStatus(p *core.Player, data []byte) {
 			call.Code = -1
 			callData, _ := json.Marshal(call)
 			fmt.Println("[2-20036] err code = -1")
-			p.SendMsg(2, 20036, callData)
+			p.SendMsg(2, 10036, callData)
 			return
 		}
 		code := core.RoomMgrObj.RefrushGameStatus(msg)
@@ -1239,7 +1239,7 @@ func (aa *RoomApi) Handle_onTurnOnOrOffStatus(p *core.Player, data []byte) {
 		//通知老师操作结果
 		call.Code = code
 		callData, _ := json.Marshal(call)
-		p.SendMsg(2, 20036, callData)
+		p.SendMsg(2, 10036, callData)
 		if code == 1 {
 			//通知学生操作结果
 			players := core.RoomMgrObj.GetAllPlayers(p.TID)
@@ -1248,7 +1248,7 @@ func (aa *RoomApi) Handle_onTurnOnOrOffStatus(p *core.Player, data []byte) {
 					fmt.Println("[2-20036] checkSend = ", player.CID, p.CID)
 					if player.CID != p.CID {
 						fmt.Println("[2-20036] sendmsg player = ", data)
-						player.SendMsg(2, 20036, data)
+						player.SendMsg(2, 10036, data)
 					}
 				}
 			}

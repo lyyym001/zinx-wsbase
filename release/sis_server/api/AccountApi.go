@@ -40,6 +40,9 @@ func (aa *AccountApi) Handle(request ziface.IRequest) {
 	//fmt.Println("[Receive Account Msg] : Player = " , player.CID )
 
 	switch sub {
+	case 10013:
+		fmt.Println("check alive!")
+		break
 	case 10012:
 		aa.Handle_onRequest10002(player, request.GetData())
 		break

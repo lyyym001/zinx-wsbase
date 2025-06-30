@@ -37,61 +37,61 @@ func (ca *CourseApi) Handle(request ziface.IRequest) {
 
 	switch sub {
 
-	case 30001: //登录
+	case 10001: //登录
 		ca.Handle_onGetReportBySnum(player, request.GetData())
 		break
-	case 30002: //本地课程数据
+	case 10002: //本地课程数据
 		ca.Handle_onGetReportBySname(player, request.GetData())
 		break
-	case 30003: //本地课程数据
+	case 10003: //本地课程数据
 		ca.Handle_onGetReportByCourseName(player, request.GetData())
 		break
-	case 30004: //本地课程数据
+	case 10004: //本地课程数据
 		ca.Handle_onGetReportByCourseType(player, request.GetData())
 		break
-	case 30005: //本地课程数据
+	case 10005: //本地课程数据
 		ca.Handle_onOpentheprojection(player, request.GetData())
 		break
-	case 30006: //本地课程数据
+	case 10006: //本地课程数据
 		ca.Handle_onReceivePic(player, request.GetData())
 		break
-	case 30007: //本地课程数据
+	case 10007: //本地课程数据
 		ca.Handle_onClosetheprojection(player, request.GetData())
 		break
-	case 30008: //本地课程数据
+	case 10008: //本地课程数据
 		ca.Handle_onAddLocalCourseData(player, request.GetData())
 		break
-	case 30009: //本地课程数据
+	case 10009: //本地课程数据
 		ca.Handle_onCreateCourseTypeInfo(player, request.GetData())
 		break
-	case 30010: //本地课程数据
+	case 10010: //本地课程数据
 		ca.Handle_onUpdateCourseTypeInfo(player, request.GetData())
 		break
-	case 30011: //本地课程数据
+	case 10011: //本地课程数据
 		ca.Handle_onDeleteCourseTypeInfo(player, request.GetData())
 		break
-	case 30012: //本地课程数据
+	case 10012: //本地课程数据
 		ca.Handle_onUpdateClassifyTypeInfo2(player, request.GetData())
 		break
-	case 30013: //本地课程数据
+	case 10013: //本地课程数据
 		ca.Handle_onUpdateCourseInfo(player, request.GetData())
 		break
-	case 30014: //本地课程数据
+	case 10014: //本地课程数据
 		ca.Handle_onUpdateOneCourse(player, request.GetData())
 		break
-	case 30015: //本地课程数据
+	case 10015: //本地课程数据
 		ca.Handle_CR_OpenCreateXCourse(player, request.GetData())
 		break
-	case 30016: //本地课程数据
+	case 10016: //本地课程数据
 		ca.Handle_onCreatexCourseReset(player, request.GetData())
 		break
-	case 30017: //本地课程数据
+	case 10017: //本地课程数据
 		ca.Handle_SendScoreToTeacher(player, request.GetData())
 		break
-	case 30018:
+	case 10018:
 		ca.Handle_onAddCleverData(player, request.GetData())
 		break
-	case 30019:
+	case 10019:
 		ca.Handle_UpdateCleverCourse(player, request.GetData())
 		break
 	}
@@ -146,7 +146,7 @@ func (aa *CourseApi) Handle_onGetReportBySnum(p *core.Player, data []byte) {
 		sData.Snum = getData.Snum
 		sData.ReportBySnumData = allStudentReport
 		x, _ := json.Marshal(sData)
-		p.SendMsg(3, 30001, x)
+		p.SendMsg(3, 10001, x)
 	}
 
 	fmt.Println("[3-30001]老师获取某个学生的考试记录 student = ", sData)
@@ -215,7 +215,7 @@ func (aa *CourseApi) Handle_onGetReportBySname(p *core.Player, data []byte) {
 		//数据
 		sData.ReportBySnumData = allStudentReport
 		x, _ := json.Marshal(sData)
-		p.SendMsg(3, 30002, x)
+		p.SendMsg(3, 10002, x)
 	}
 
 	fmt.Println("[3-30002]根据学生姓名获取学生报表 student = ", sData)
@@ -260,7 +260,7 @@ func (aa *CourseApi) Handle_onGetReportByCourseName(p *core.Player, data []byte)
 		//数据
 		sData.ReportByCnameData = allCourseReport
 		x, _ := json.Marshal(sData)
-		p.SendMsg(3, 30003, x)
+		p.SendMsg(3, 10003, x)
 	}
 
 	fmt.Println("[3-30003]通过名称获得课程报表 student = ", sData)
@@ -302,7 +302,7 @@ func (aa *CourseApi) Handle_onGetReportByCourseType(p *core.Player, data []byte)
 		//数据
 		sData.ReportByCtypeData = allCourseReport
 		x, _ := json.Marshal(sData)
-		p.SendMsg(3, 30004, x)
+		p.SendMsg(3, 10004, x)
 	}
 
 	fmt.Println("[3-30004]通过类型获得课程报表 student = ", sData)
@@ -319,7 +319,7 @@ func (aa *CourseApi) Handle_onOpentheprojection(p *core.Player, data []byte) {
 	if players != nil {
 		for _, player := range players {
 			if player.CID == getData.StuAccountID {
-				player.SendMsg(3, 30005, data)
+				player.SendMsg(3, 10005, data)
 			}
 		}
 	}
@@ -333,7 +333,7 @@ func (aa *CourseApi) Handle_onReceivePic(p *core.Player, data []byte) {
 
 	playerT := core.RoomMgrObj.GetTPlayer(p.TID)
 	if playerT != nil {
-		playerT.SendMsg(3, 30006, data)
+		playerT.SendMsg(3, 10006, data)
 	}
 
 	fmt.Println("[3-30005]收到学生图片，发送给老师 data = ", len(data))
@@ -350,7 +350,7 @@ func (aa *CourseApi) Handle_onClosetheprojection(p *core.Player, data []byte) {
 	if players != nil {
 		for _, player := range players {
 			if player.CID == getData.StuAccountID {
-				player.SendMsg(3, 30007, data)
+				player.SendMsg(3, 10007, data)
 			}
 		}
 	}
@@ -405,7 +405,7 @@ func (aa *CourseApi) Handle_onCreateCourseTypeInfo(p *core.Player, data []byte) 
 	playerT := core.RoomMgrObj.GetTPlayer(p.TID)
 	if playerT != nil {
 		data1, _ := json.Marshal(SendData)
-		playerT.SendMsg(3, 30009, data1)
+		playerT.SendMsg(3, 10009, data1)
 	}
 
 	fmt.Println("[3-30009]创建1个课程类型信息(目录编辑) student = ", getData)
@@ -500,9 +500,9 @@ func (aa *CourseApi) Handle_onUpdateOneCourse(p *core.Player, data []byte) {
 	if players != nil {
 		for _, player := range players {
 			if getData.StuAccountID == "" {
-				player.SendMsg(3, 30014, data)
+				player.SendMsg(3, 10014, data)
 			} else if getData.StuAccountID == player.CID {
-				player.SendMsg(3, 30014, data)
+				player.SendMsg(3, 10014, data)
 				break
 			}
 		}
@@ -535,7 +535,7 @@ func (aa *CourseApi) Handle_CR_OpenCreateXCourse(p *core.Player, data []byte) {
 	players := core.RoomMgrObj.GetAllPlayers(p.TID)
 	if players != nil {
 		for _, player := range players {
-			player.SendMsg(3, 30015, data1)
+			player.SendMsg(3, 10015, data1)
 		}
 	}
 
@@ -558,9 +558,9 @@ func (aa *CourseApi) Handle_onCreatexCourseReset(p *core.Player, data []byte) {
 	if players != nil {
 		for _, player := range players {
 			if getData.StuAccountID == "" {
-				player.SendMsg(3, 30016, data1)
+				player.SendMsg(3, 10016, data1)
 			} else if getData.StuAccountID == player.CID {
-				player.SendMsg(3, 30016, data1)
+				player.SendMsg(3, 10016, data1)
 				break
 			}
 		}
@@ -588,7 +588,7 @@ func (aa *CourseApi) Handle_SendScoreToTeacher(p *core.Player, data []byte) {
 
 	playerT := core.RoomMgrObj.GetTPlayer(p.TID)
 	if playerT != nil {
-		playerT.SendMsg(3, 30017, data1)
+		playerT.SendMsg(3, 10017, data1)
 	}
 	fmt.Println("[3-30017]重启Create-x课程 分数 = ", len(data1))
 
@@ -618,7 +618,7 @@ func (aa *CourseApi) Handle_onAddCleverData(p *core.Player, data []byte) {
 	if len(sid) > 0 {
 		fmt.Println("[3-30018]添加灵创课程 err = 作品已经存在,", getData.CourseID)
 		data, _ := json.Marshal(call)
-		p.SendMsg(3, 30018, data)
+		p.SendMsg(3, 10018, data)
 		return //作品已经存在
 	}
 
@@ -632,7 +632,7 @@ func (aa *CourseApi) Handle_onAddCleverData(p *core.Player, data []byte) {
 		call.Id = _id
 		fmt.Println("[3-30018]添加灵创课程 err = 作品已添加成功 ， ID = ", _id)
 		data, _ := json.Marshal(call)
-		p.SendMsg(3, 30018, data)
+		p.SendMsg(3, 10018, data)
 	} else {
 		log.Println("Mysql_AddLocalCourseData,", err)
 		//	return 0
@@ -656,7 +656,7 @@ func (aa *CourseApi) Handle_UpdateCleverCourse(p *core.Player, data []byte) {
 	if err != nil {
 		fmt.Println("Sqlite Handle_UpdateCourse Update DB Err : ", err.Error())
 		data, _ := json.Marshal(call)
-		p.SendMsg(3, 30019, data)
+		p.SendMsg(3, 10019, data)
 		return
 	} else {
 		defer stmt.Close()
@@ -665,13 +665,13 @@ func (aa *CourseApi) Handle_UpdateCleverCourse(p *core.Player, data []byte) {
 		if err != nil {
 			fmt.Println("Sqlite Handle_UpdateCourse DB Err 1")
 			data, _ := json.Marshal(call)
-			p.SendMsg(3, 30019, data)
+			p.SendMsg(3, 10019, data)
 			return
 		}
 		//fmt.Println("update affect rows is ", affectNum)
 	}
 	call.Code = 1
 	data2, _ := json.Marshal(call)
-	p.SendMsg(3, 30019, data2)
+	p.SendMsg(3, 10019, data2)
 	fmt.Println("[3-30019]更新灵创课程 回执 = ", call)
 }
