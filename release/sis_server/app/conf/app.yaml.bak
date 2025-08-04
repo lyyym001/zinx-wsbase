@@ -1,0 +1,37 @@
+Version: 1.0
+Host: 192.168.0.22
+Name: "教学系统"
+UdpPort: 10108
+TcpPort: 10106
+GinPort: 8080
+StunPort: 19302
+MaxConn: 100
+WorkerPoolSize: 10
+HeartbeatTime: 60
+MaxPacketSize: 0
+#logFile: ./server.log
+#SqlitePath: "db/space"
+#maxPacketSize: 0
+#model: 2    #1-tcp 2-websocket
+Conf:
+  StreamingUri: "192.168.0.22:8099"
+  RtmpChannel: "192.168.0.22:8090"
+  RtmpHost: "192.168.0.22:1935"
+MysqlConfig:
+  Path: "192.168.0.9:3306"
+  Config: ""
+  Dbname: "zinx_websocket"
+  Username: "root"
+  Password: "root"
+  MaxIdleConns: 10
+  MaxOpenConns: 100
+#mysql:
+  #dns:  "root:root@tcp(127.0.0.1:3306)/multiattdemo?charset=utf8mb4&parseTime=True&loc=Local"
+#  dns:  "root:root@tcp(192.168.0.9:3306)/multiattdemo?charset=utf8mb4&parseTime=True&loc=Local"
+  #dns:  "fdroot:3dbutfly@alirds@tcp(rm-2zehp1p514j6761zobo.mysql.rds.aliyuncs.com:3306)/mspace?charset=utf8mb4&parseTime=True&loc=Local"
+Sqlite:
+  Dns: "/db/education.db" #"绝对路径"
+RedisConfig:
+  DB: 0
+  Addr: "192.168.0.9:6379"
+  Password: ""

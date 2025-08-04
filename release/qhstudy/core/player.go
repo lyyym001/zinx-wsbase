@@ -3,7 +3,6 @@ package core
 import (
 	"fmt"
 	"github.com/lyyym/zinx-wsbase/release/qhstudy/internal/helper"
-	"github.com/lyyym/zinx-wsbase/release/qhstudy/internal/models_sqlite"
 	"github.com/lyyym/zinx-wsbase/release/qhstudy/pb"
 	"github.com/lyyym/zinx-wsbase/ziface"
 	"google.golang.org/protobuf/proto"
@@ -83,15 +82,15 @@ func (p *Player) Bind(userToken string) bool {
 	fmt.Println("user Bind : UserName = ", p.UserName)
 
 	//read from db
-	if userClaim.AccountType == 0 {
-		data := new(models_sqlite.DeviceBasic)
-		err = models_sqlite.DB.Where("username = ?", userClaim.UserName).First(&data).Error
-		if err != nil {
-			fmt.Println("user read data error : from db ", err.Error())
-		} else {
-			p.CDevice.Status = data.Status
-		}
-	}
+	//if userClaim.AccountType == 0 {
+	//	data := new(models_sqlite.DeviceBasic)
+	//	err = models_sqlite.DB.Where("username = ?", userClaim.UserName).First(&data).Error
+	//	if err != nil {
+	//		fmt.Println("user read data error : from db ", err.Error())
+	//	} else {
+	//		p.CDevice.Status = data.Status
+	//	}
+	//}
 
 	p.Status = 3
 	//发送userInfo

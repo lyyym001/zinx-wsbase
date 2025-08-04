@@ -45,11 +45,13 @@ func (aa *AccountApi) Handle(request ziface.IRequest) {
 		aa.Handle_onRequest10002(player, request.GetData())
 		break
 	case 10003:
-		//掉线通知
+		//同步位置
+		aa.Handle_onRequest10003(player, request.GetData())
 		break
 	case 10004:
-		//心跳
+		//同步聊天
 		//fmt.Println("keep alive")
+		aa.Handle_onRequest10004(player, request.GetData())
 		break
 
 	}
@@ -81,4 +83,29 @@ func (aa *AccountApi) Handle_onRequest10002(p *core.Player, data []byte) {
 	} else {
 		global.Glog.Info("Bind Error")
 	}
+}
+
+func (aa *AccountApi) Handle_onRequest10003(p *core.Player, data []byte) {
+
+	request_data := &pb.Sync_Pos{}
+	err := proto.Unmarshal(data, request_data)
+	if err != nil {
+		fmt.Println("proto.Unmarshal err", err)
+		return
+	}
+	//fmt.Println("位置同步：", request_data.X, request_data.Y, request_data.Z)
+	//1. 先绑定数据给玩家
+	core.WorldMgrObj.WorldToo(1, 10003, request_data, p.UserName)
+}
+
+func (aa *AccountApi) Handle_onRequest10004(p *core.Player, data []byte) {
+
+	request_data := &pb.Sync_Chat{}
+	err := proto.Unmarshal(data, request_data)
+	if err != nil {
+		fmt.Println("proto.Unmarshal err", err)
+		return
+	}
+	fmt.Println("聊天：", request_data.UserName, request_data.Text)
+	core.WorldMgrObj.WorldToo(1, 10004, request_data, p.UserName)
 }

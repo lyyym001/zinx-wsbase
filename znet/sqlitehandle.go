@@ -13,6 +13,7 @@ type SqliteHandle struct {
 
 func NewSqliteHandle(dbPath string) *SqliteHandle {
 
+	fmt.Println("sqlLitePath", dbPath)
 	sqlite := &SqliteHandle{}
 	sqlite.Connect(dbPath)
 	return sqlite

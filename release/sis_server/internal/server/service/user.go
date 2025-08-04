@@ -129,7 +129,7 @@ func UserLogin(c *gin.Context) {
 		}
 
 	}
-
+	fmt.Println("Generate token = ", token)
 	c.JSON(http.StatusOK, gin.H{
 		"code": 200,
 		"data": token,

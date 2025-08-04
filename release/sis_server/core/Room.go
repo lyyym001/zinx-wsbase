@@ -120,30 +120,30 @@ func SendUdpBroadcastToStudent(tid string) {
 }
 
 func (rm *Room) SendUdpBroadcastToStudent_CloseCourse() {
-	////fmt.Println("SendUdpBroadcast To Student")
-	////log.Println("SendUdpBroadcast To Student")
-	//
-	//laddrStu := net.UDPAddr{
-	//	IP:   net.ParseIP(utils.GlobalObject.Host),
-	//	Port: 10109, //utils.GlobalObject.UdpPortDir,
-	//}
-	//
-	//// 这里设置接收者的IP地址为广播地址
-	//raddrStu := net.UDPAddr{
-	//	IP:   net.IPv4(255, 255, 255, 255),
-	//	Port: 10109, //utils.GlobalObject.UdpPort,
-	//}
-	//
-	//connStu, err := net.DialUDP("udp", &laddrStu, &raddrStu)
-	//if err != nil {
-	//	println(err.Error())
-	//	return
-	//}
-	//
-	////fmt.Println("UDP QuitCourse ,laddrStu = ", laddrStu, " raddrStu = ", raddrStu)
-	//
-	//connStu.Write([]byte("QuitCourse"))
+	//var sData pb.Sync_Hello
+	//sData.Ip = global.Object.Host
+	//sData.Port = global.Object.TCPPort
+	//sData.GinPort = global.Object.GinPort
+	//zlog.Debugf("Broadcast Ip=%s,TcpPort=%d,GinPort = %d", sData.Ip, sData.Port, sData.GinPort)
+	//global.Glog.Info("udp broadcast ", zap.String("Ip", sData.Ip), zap.Int("TcpPort", sData.Port), zap.Int("GinPort", sData.GinPort))
+	// 这里设置接收者的IP地址为广播地址
+	raddrStu := net.UDPAddr{
+		IP:   net.IPv4(255, 255, 255, 255),
+		Port: global.Object.UdpPortDir,
+	}
+	fmt.Println("SendUdpBroadcast To Student raddrStu = ", global.Object.UdpPortDir, " raddrStu = ", raddrStu)
+	connStu, err := net.DialUDP("udp", nil, &raddrStu) //&laddrStu
+	if err != nil {
+		println(err.Error())
+		return
+	}
+
+	//fmt.Println("pBroadcast LanServer ", raddrStu, "data = ", sData)
+	//x, _ := json.Marshal(sData)
+	//connStu.Write(x)
 	//connStu.Close()
+	connStu.Write([]byte("QuitCourse"))
+	connStu.Close()
 }
 
 func LocalIp() net.IP {

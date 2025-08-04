@@ -2,6 +2,7 @@ Version: 1.0
 Host: 192.168.0.22
 Name: "教学系统"
 UdpPort: 10108
+UdpPortDir: 10109
 TcpPort: 10106
 GinPort: 8080
 StunPort: 19302
@@ -30,7 +31,7 @@ MysqlConfig:
 #  dns:  "root:root@tcp(192.168.0.9:3306)/multiattdemo?charset=utf8mb4&parseTime=True&loc=Local"
   #dns:  "fdroot:3dbutfly@alirds@tcp(rm-2zehp1p514j6761zobo.mysql.rds.aliyuncs.com:3306)/mspace?charset=utf8mb4&parseTime=True&loc=Local"
 Sqlite:
-  Dns: "D:/A_程序包/sis/TClientt/db/education.db" #"绝对路径"
+  Dns: "/db/education.db"
 RedisConfig:
   DB: 0
   Addr: "192.168.0.9:6379"

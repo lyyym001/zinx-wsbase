@@ -18,6 +18,7 @@ import (
 	"github.com/spf13/viper"
 	"go.uber.org/zap"
 	"gorm.io/gorm"
+	"net"
 	"os"
 	"time"
 )
@@ -86,7 +87,7 @@ type obj struct {
 		Zinx
 	*/
 	Version          string        //当前Zinx版本号
-	MaxPacketSize    uint16        //读取数据包的最大值
+	MaxPacketSize    uint32        //读取数据包的最大值
 	MaxConn          int           //当前服务器主机允许的最大链接个数
 	WorkerPoolSize   uint32        //业务工作Worker池的数量
 	MaxWorkerTaskLen uint32        //业务工作Worker对应负责的任务队列最大任务存储数量
@@ -166,6 +167,10 @@ func (g *obj) Reload() {
 		panic(fmt.Errorf("fatal error config file: %s ", err))
 	}
 
+	if len(g.Host) == 0 {
+		g.Host = LocalIp().String()
+	}
+
 }
 
 // InitObject 初始化全局配置
@@ -179,7 +184,7 @@ func InitObject(confPath string) {
 		Name:    "MDBC-websocket",
 		Version: "V0.11",
 		TCPPort: 8999,
-		Host:    "0.0.0.0",
+		Host:    "",
 		Env:     "production",
 		//DoubleMsgID:      1,
 		MaxConn:          12000,
@@ -189,7 +194,7 @@ func InitObject(confPath string) {
 		MaxWorkerTaskLen: 1024,
 		MaxMsgChanLen:    1024,
 		HeartbeatTime:    60,
-		UdpPortDir:       10108,
+		UdpPortDir:       10109,
 
 		ZapConfig: zapConfig{
 			Level:         "info",
@@ -205,4 +210,32 @@ func InitObject(confPath string) {
 
 	//NOTE: 从配置文件中加载一些用户配置的参数
 	Object.Reload()
+}
+
+func LocalIp() net.IP {
+	netInterfaces, err := net.Interfaces()
+	if err != nil {
+		fmt.Println(err)
+		return nil
+	}
+	var ip net.IP = nil
+	for i := 0; i < len(netInterfaces); i++ {
+		if (netInterfaces[i].Flags & net.FlagUp) != 0 {
+			addrs, _ := netInterfaces[i].Addrs()
+			for _, address := range addrs {
+				if ipnet, ok := address.(*net.IPNet); ok && !ipnet.IP.IsLoopback() {
+					if ipnet.IP.To4() != nil {
+						ip = ipnet.IP
+						break
+						//fmt.Println(ip)
+					}
+				}
+			}
+		}
+		if ip != nil {
+			break
+		}
+	}
+
+	return ip
 }

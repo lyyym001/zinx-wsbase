@@ -8,7 +8,7 @@ import (
 	"github.com/lyyym/zinx-wsbase/ziface"
 )
 
-var _defaultHeaderLen uint32 = 4
+var _defaultHeaderLen uint32 = 6
 
 // DataPack 封包拆包类实例，暂时不需要成员
 type DataPack struct{}

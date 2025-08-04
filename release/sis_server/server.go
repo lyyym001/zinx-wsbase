@@ -75,7 +75,22 @@ func main() {
 	zuid.Init()
 	//4. 连接sqlite
 	//models_sqlite.NewDB()
-	global.SqliteInst = znet.NewSqliteHandle(global.Object.Sqlite.Dns)
+	pwd, err := os.Getwd()
+	if err != nil {
+		pwd = ""
+	}
+	sqlitePath := pwd + global.Object.Sqlite.Dns
+	global.SqliteInst = znet.NewSqliteHandle(sqlitePath)
+	println("sqlitePath = ", sqlitePath)
+	//
+	//启动本地老师端
+	//print("Start Up TClient\n")
+	_, err1 := os.StartProcess("StartTClient.bat", nil, &os.ProcAttr{Files: []*os.File{os.Stdin, os.Stdout, os.Stderr}})
+	if err1 != nil {
+		print("TClient Started Error\n")
+	} else {
+		print("TClient Started Succ\n")
+	}
 
 	//5.启动InteractionServices
 	s := InteractionServices(AppID)

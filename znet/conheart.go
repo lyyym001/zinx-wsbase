@@ -20,6 +20,7 @@ func (c *Connection) heartBeatChecker() {
 	for {
 		select {
 		case <-timer.C:
+			//fmt.Println("timer.C , ", timer.C)
 			if !c.IsAlive() {
 				c.Stop()
 				//心跳检测失败，结束连接
@@ -32,6 +33,7 @@ func (c *Connection) heartBeatChecker() {
 			}
 			timer.Reset(global.Object.HeartbeatTime * time.Second)
 		case <-c.ctx.Done():
+			//fmt.Println("c.ctx.Done() , ", c.ctx.Done())
 			timer.Stop()
 			global.Glog.Warn("连接关闭 by ctx.Done")
 			return

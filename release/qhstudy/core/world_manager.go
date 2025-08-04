@@ -355,6 +355,19 @@ func (wm *WorldManager) WorldToa(msgID uint16, subID uint16, data proto.Message)
 	}
 }
 
+// 世界同步给所有参与人的消息
+func (wm *WorldManager) WorldToo(msgID uint16, subID uint16, data proto.Message, out_userName string) {
+
+	for userName, pid := range wm.PMs {
+		if p, ok := wm.Players[pid]; ok {
+			if userName != out_userName {
+				fmt.Println("Too -> ", userName)
+				p.SendMsg(msgID, subID, data)
+			}
+		}
+	}
+}
+
 // 给没有故障的用户转发消息，包括老师
 func (wm *WorldManager) Toa_NoGz(msgID uint16, subID uint16, data proto.Message) {
 

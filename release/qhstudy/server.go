@@ -6,7 +6,6 @@ import (
 	"github.com/lyyym/zinx-wsbase/global"
 	"github.com/lyyym/zinx-wsbase/release/qhstudy/api"
 	"github.com/lyyym/zinx-wsbase/release/qhstudy/core"
-	"github.com/lyyym/zinx-wsbase/release/qhstudy/internal/models_sqlite"
 	"github.com/lyyym/zinx-wsbase/release/qhstudy/internal/server/router"
 	"github.com/lyyym/zinx-wsbase/ziface"
 	"github.com/lyyym/zinx-wsbase/znet"
@@ -81,7 +80,7 @@ func main() {
 	//3.初始化uuid
 	zuid.Init()
 	//4. 连接sqlite
-	models_sqlite.NewDB()
+	//models_sqlite.NewDB()
 
 	//5.启动InteractionServices
 	s := InteractionServices(AppID)

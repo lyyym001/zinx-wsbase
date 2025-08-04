@@ -3,6 +3,7 @@ package znet
 import (
 	"context"
 	"errors"
+	"fmt"
 	"github.com/lyyym/zinx-wsbase/global"
 	"github.com/lyyym/zinx-wsbase/ziface"
 	"go.uber.org/zap"
@@ -56,7 +57,6 @@ func NewConnection(server ziface.IServer, conn *websocket.Conn, connID int64, ms
 		msgBuffChan: make(chan *Message, global.Object.MaxMsgChanLen),
 		property:    nil,
 	}
-
 	//将新创建的Conn添加到链接管理中
 	c.TCPServer.GetConnMgr().Add(c)
 	return c
@@ -262,6 +262,7 @@ func (c *Connection) SendBuffMsg(msgID uint16, msgType int, data []byte) (err er
 	//将data封包，并且发送
 	dp := c.TCPServer.Packet()
 	msg := NewMsgPackage(msgID, msgType, data)
+	fmt.Println("msg.lenght = ", msg.DataLen)
 	pack, err := dp.Pack(msg)
 	if err != nil {
 		global.Glog.Error("Pack error ", zap.Uint16("msg ID = ", msgID))

@@ -87,7 +87,7 @@ func (p *Player) Login(data *pb.SyncLogin) {
 				data1, _ := json.Marshal(&pb.StudentInfo{StuUserName: player.CID, Flag: 1})
 				//
 				////发送数据给客户端
-				p.SendMsg(1, 10007, data1)
+				player.SendMsg(1, 10007, data1)
 			}
 		}
 	}
@@ -185,6 +185,8 @@ func (p *Player) SyncPID() {
 	////发送数据给客户端
 	fmt.Println("发送PID", p.PID, len(data1))
 	p.SendMsg(1, 10001, data1)
+
+	//ID#lenght#body
 
 	////
 	//var allLocalCourseType pb.Sync_GetLocalCourseTypeList
@@ -580,9 +582,10 @@ func (p *Player) SendMsg(msgID uint16, msgSub uint16, data []byte) {
 
 func (p *Player) Bind(userToken string) bool {
 
+	fmt.Println("Bind token = ", userToken)
 	userClaim, err := helper.AnalyseToken(userToken)
 	if err != nil {
-		fmt.Println("tokenAnalyseError")
+		fmt.Println("tokenAnalyseError err = ", err)
 		return false
 	}
 	p.Status = 2

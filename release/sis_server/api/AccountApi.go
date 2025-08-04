@@ -41,7 +41,7 @@ func (aa *AccountApi) Handle(request ziface.IRequest) {
 
 	switch sub {
 	case 10013:
-		fmt.Println("check alive!")
+		//fmt.Println("check alive!")
 		break
 	case 10012:
 		aa.Handle_onRequest10002(player, request.GetData())
