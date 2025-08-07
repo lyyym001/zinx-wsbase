@@ -464,8 +464,6 @@ func (aa *RoomApi) Handle_CloseCourse(p *core.Player, data []byte) {
 	msg := &pb.Sync_CloseCourse{}
 	json.Unmarshal(data, msg)
 
-	//发送UDP - 关闭课程
-	SendUdpBroadcastToStudent_CloseCourse()
 	//CRoom := core.RoomMgrObj.GetRoom(p.TID)
 	//if CRoom != nil {
 	//	CRoom.SendUdpBroadcastToStudent_CloseCourse()
@@ -477,6 +475,9 @@ func (aa *RoomApi) Handle_CloseCourse(p *core.Player, data []byte) {
 
 	players := core.RoomMgrObj.GetAllPlayers(p.TID)
 	if msg.StuAccountID == "" {
+
+		//发送UDP - 关闭课程
+		SendUdpBroadcastToStudent_CloseCourse()
 
 		//全部结束课程
 		db := global.SqliteInst.GetDB()

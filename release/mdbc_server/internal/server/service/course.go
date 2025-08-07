@@ -187,7 +187,7 @@ func CourseCreate(c *gin.Context) {
 		return
 	}
 	fmt.Println("in = ", in)
-	in.Cid = "CUSTOM" + in.Cid
+	//in.Cid = "CUSTOM" + in.Cid
 	//查询一下是否存在该ID
 	var count int64
 	err = models_sqlite.DB.Model(models_sqlite.CustomBasic{}).Where("RID = ?", in.Cid).Count(&count).Error
@@ -257,7 +257,7 @@ func GetCustomCourse(c *gin.Context) {
 		return
 	}
 	fmt.Println("in = ", in)
-	in.Cid = "CUSTOM" + in.Cid
+	//in.Cid = "CUSTOM" + in.Cid
 	//查询一下是否存在该ID
 	var count int64
 	err = models_sqlite.DB.Model(models_sqlite.CustomBasic{}).Where("RID = ?", in.Cid).Count(&count).Error

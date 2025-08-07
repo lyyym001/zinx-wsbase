@@ -29,7 +29,7 @@ MysqlConfig:
 #  dns:  "root:root@tcp(192.168.0.9:3306)/multiattdemo?charset=utf8mb4&parseTime=True&loc=Local"
   #dns:  "fdroot:3dbutfly@alirds@tcp(rm-2zehp1p514j6761zobo.mysql.rds.aliyuncs.com:3306)/mspace?charset=utf8mb4&parseTime=True&loc=Local"
 Sqlite:
-  Dns: "release/mdbc_server/conf/mdbc.db"
+  Dns: "db/work.db"
 RedisConfig:
   DB: 0
   Addr: "192.168.0.9:6379"

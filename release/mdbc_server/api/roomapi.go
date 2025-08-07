@@ -2,11 +2,13 @@ package api
 
 import (
 	"fmt"
+	"github.com/lyyym/zinx-wsbase/global"
 	"github.com/lyyym/zinx-wsbase/release/mdbc_server/core"
 	"github.com/lyyym/zinx-wsbase/release/mdbc_server/pb"
 	"github.com/lyyym/zinx-wsbase/ziface"
 	"github.com/lyyym/zinx-wsbase/znet"
 	"google.golang.org/protobuf/proto"
+	"net"
 )
 
 type RoomApi struct {
@@ -158,6 +160,26 @@ func (aa *RoomApi) Handle_onRequest10005(p *core.Player, data []byte) {
 	//转发消息
 	core.WorldMgrObj.Toa_NoGzNoTeacher_InScene(4, 10005, request_data)
 
+	//发送UDP - 关闭课程
+	SendUdpBroadcastToStudent_CloseCourse()
+
+}
+
+func SendUdpBroadcastToStudent_CloseCourse() {
+
+	raddrStu := net.UDPAddr{
+		IP:   net.IPv4(255, 255, 255, 255),
+		Port: global.Object.UdpPortDir,
+	}
+	fmt.Println("SendUdpBroadcast To Student raddrStu = ", global.Object.UdpPortDir, " raddrStu = ", raddrStu)
+	connStu, err := net.DialUDP("udp", nil, &raddrStu) //&laddrStu
+	if err != nil {
+		println(err.Error())
+		return
+	}
+
+	connStu.Write([]byte("QuitCourse"))
+	connStu.Close()
 }
 
 // 播放

@@ -1,6 +1,5 @@
 Version: 1.0
-Host: 192.168.0.22
-Name: "教学系统"
+Name: "教学管理系统"
 UdpPort: 1905
 Port: 10106
 GinPort: 8080
@@ -8,10 +7,7 @@ StunPort: 19302
 MaxConn: 100
 WorkerPoolSize: 10
 HeartbeatTime: 60
-#logFile: ./server.log
-#SqlitePath: "db/space"
-#maxPacketSize: 0
-#model: 2    #1-tcp 2-websocket
+UdpPortDir: 10109
 Conf:
   StreamingUri: "192.168.0.22:8099"
   RtmpChannel: "192.168.0.22:8090"
@@ -29,7 +25,7 @@ MysqlConfig:
 #  dns:  "root:root@tcp(192.168.0.9:3306)/multiattdemo?charset=utf8mb4&parseTime=True&loc=Local"
   #dns:  "fdroot:3dbutfly@alirds@tcp(rm-2zehp1p514j6761zobo.mysql.rds.aliyuncs.com:3306)/mspace?charset=utf8mb4&parseTime=True&loc=Local"
 Sqlite:
-  Dns: "conf/mdbc.db"
+  Dns: "db/work.db"
 RedisConfig:
   DB: 0
   Addr: "192.168.0.9:6379"
