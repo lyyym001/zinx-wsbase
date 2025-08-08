@@ -1,9 +1,10 @@
 package models_sqlite
 
 import (
+	"github.com/glebarez/sqlite" //这个用来替换gorm原来的sqlite，因为原先的在linux交叉编译是会出现问题
+	//https://blog.csdn.net/akonezc/article/details/147524100
 	"github.com/lyyym/zinx-wsbase/global"
 	"go.uber.org/zap"
-	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 	"time"
 )
